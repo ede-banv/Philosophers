@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:07:46 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/02 17:03:55 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/02 17:05:52 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->n_fork->lock);
 	printf("[ ]Philo %d has taken a fork\n", philo->n);
 	printf("[ ]Philo %d is eating\n", philo->n);
-	usleep(all->args->time_to_eat * 1000)
+	usleep(all->args->time_to_eat * 1000);
 }
 
 void	*philo_life(void *arg)
