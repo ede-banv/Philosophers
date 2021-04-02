@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/02 16:31:02 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/02 16:43:23 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "elements.h"
 
-void	ft_init_philos(t_all *all);
+int		ft_init_philos(t_all *all);
 int		ft_parsing(t_all *all, int ac, char **av);
 void	ft_start_thread(t_all *all);
 
