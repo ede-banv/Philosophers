@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:51:26 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/02 16:30:37 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/03 14:27:57 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_bzero(void *s, size_t n)
 
 int	ft_isdigit_str(char *str)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < ft_strlen(str))
