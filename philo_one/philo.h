@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/03 15:36:00 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/05 14:12:38 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void	ft_start_thread(t_all *all);
 /*
 ** UTILS
 */
-void	printf_lock(char *str, const t_philo *const philo);
-
-void	ft_bzero(void *s, size_t n);
-int		ft_isdigit_str(char *str);
-int		ft_atoi_ph(const char *str);
+void			printf_lock(char *str, const t_philo *const philo);
+unsigned int	time_ms(void);
+void			sleep_ph(int time);
+void			ft_bzero(void *s, size_t n);
+int				ft_isdigit_str(char *str);
+int				ft_atoi_ph(const char *str);
 
 #endif

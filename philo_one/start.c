@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:07:46 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/03 15:45:09 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/05 14:13:25 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	philo_sleep(t_philo *philo)
 {
 	printf_lock("is sleeping", philo);
-	usleep(g_args->time_to_sleep * 1000);
+	sleep_ph(args->time_to_sleep);
 }
 
 void	philo_eat(t_philo *philo)
@@ -27,7 +27,7 @@ void	philo_eat(t_philo *philo)
 	philo->nbtem++;
 	printf_lock("is eating", philo);
 	philo->tslm = 0;
-	usleep(g_args->time_to_eat * 1000);
+	sleep_ph(g_args->time_to_eat);
 	pthread_mutex_unlock(&philo->my_fork.lock);
 	pthread_mutex_unlock(&philo->n_fork->lock);
 }

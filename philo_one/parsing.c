@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:49:07 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/03 15:28:38 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/05 14:11:51 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 int		ft_init_philos(t_all *all)
 {
 	int				i;
-	struct timeval	tv;
 
 	i = 1;
 	if (!(all->philos = malloc(sizeof(t_philo) * g_args->nb_philo)))
 		return (0);
 	ft_bzero(all->philos, sizeof(t_philo) * g_args->nb_philo);
-	gettimeofday(&tv, NULL);
-	g_args->time_start = tv.tv_usec * 1000;
+	g_args->time_start = time_ms();
 	while (i <= g_args->nb_philo)
 	{
 		all->philos[i - 1].n = i;
