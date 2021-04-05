@@ -6,30 +6,36 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:07:46 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/05 14:13:25 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/05 15:38:06 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_sleep(t_philo *philo)
+int		philo_sleep(t_philo *philo)
 {
+	if (!philo_dead(philo, g_args->time_to_sleep))
+		return (0);
 	printf_lock("is sleeping", philo);
-	sleep_ph(args->time_to_sleep);
+	sleep_ph(g_args->time_to_sleep);
+	return (1);
 }
 
-void	philo_eat(t_philo *philo)
+int		philo_eat(t_philo *philo)
 {
+	if (!philo_dead(philo, g_args->time_to_eat))
+		return (0);
 	pthread_mutex_lock(&philo->my_fork.lock);
 	printf_lock("has taken a fork", philo);
 	pthread_mutex_lock(&philo->n_fork->lock);
 	printf_lock("has taken a fork", philo);
 	philo->nbtem++;
 	printf_lock("is eating", philo);
-	philo->tslm = 0;
+	philo->tolm = time_ms();
 	sleep_ph(g_args->time_to_eat);
 	pthread_mutex_unlock(&philo->my_fork.lock);
 	pthread_mutex_unlock(&philo->n_fork->lock);
+	return (1);
 }
 
 void	*philo_life(void *arg)
@@ -38,10 +44,14 @@ void	*philo_life(void *arg)
 
 	i = 0;
 	t_philo *philo = (t_philo *)arg;
-	while (philo->tslm < g_args->time_to_die && (g_args->ntepme != -1 && philo->nbtem < g_args->ntepme))
+	while (time_ms() - philo->tolm < (unsigned)g_args->time_to_die && (g_args->ntepme != -1 && g_args->eat_enough < g_args->nb_philo))
 	{
-		philo_eat(philo);
-		philo_sleep(philo);
+		if (!philo_eat(philo))
+			break;
+		if (philo->nbtem == g_args->ntepme)
+			max_meals();
+		if (!philo_sleep(philo))
+			break;
 		printf_lock("is thinking", philo);
 	}
 	pthread_mutex_unlock(&g_args->dead);
@@ -71,6 +81,7 @@ int		main(int ac, char **av)
 	ft_bzero(g_args, sizeof(t_args));
 	pthread_mutex_init(&g_args->print, NULL);
 	pthread_mutex_init(&g_args->dead, NULL);
+	pthread_mutex_init(&g_args->eat_stop, NULL);
 	pthread_mutex_lock(&g_args->dead);
 	if (ac < 5 || ac > 6)
 	{

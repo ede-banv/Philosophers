@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:16:53 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/03 15:14:28 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/05 15:25:21 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,16 @@ typedef struct	s_philo
 	pthread_t	thread;
 	t_fork		my_fork;
 	t_fork		*n_fork;
-	int			tslm; //time since last meal
+	int			tolm; //time since last meal
 	int			nbtem; //number of times they have eaten a meal
 }				t_philo;
+
+typedef struct	s_time
+{
+	int	time_start;
+
+}				t_time;
+
 
 typedef struct	s_args
 {
@@ -37,8 +44,10 @@ typedef struct	s_args
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				ntepme; //nb of times each philosopher must eat
-	int				time_start;
+	unsigned int	time_start;
+	int				eat_enough;
 	pthread_mutex_t	print;
+	pthread_mutex_t eat_stop;
 	pthread_mutex_t	dead;
 }				t_args;
 

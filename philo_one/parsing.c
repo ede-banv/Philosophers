@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:49:07 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/05 14:11:51 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/05 16:06:07 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_init_philos(t_all *all)
 {
-	int				i;
+	int	i;
 
 	i = 1;
 	if (!(all->philos = malloc(sizeof(t_philo) * g_args->nb_philo)))
@@ -26,7 +26,10 @@ int		ft_init_philos(t_all *all)
 		all->philos[i - 1].n = i;
 		pthread_mutex_init(&all->philos[i - 1].my_fork.lock, NULL);
 		if (i < g_args->nb_philo)
+		{
+			all->philos[i - 1].tolm = time_ms();
 			all->philos[i - 1].n_fork = &all->philos[i].my_fork;
+		}
 		i++;
 	}
 	all->philos[g_args->nb_philo - 1].n_fork = &all->philos[0].my_fork;
