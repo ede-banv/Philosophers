@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/05 15:29:05 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/06 14:58:10 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				philo_dead(t_philo *philo, int time_test);
 */
 void			printf_lock(char *str, const t_philo *const philo);
 unsigned int	time_ms(void);
-void			sleep_ph(int time);
+void			sleep_ph(int time, t_philo *philo);
 
 void			ft_bzero(void *s, size_t n);
 int				ft_isdigit_str(char *str);

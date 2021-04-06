@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:23:55 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/05 15:37:43 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/06 15:02:32 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		philo_dead(t_philo *philo, int time_test)
 	}
 	else if (time_now + time_test - philo->tolm >= (unsigned)g_args->time_to_die)
 	{
-		sleep_ph(time_now - philo->tolm + time_test - (unsigned)g_args->time_to_die);
+		//sleep_ph(time_now - philo->tolm + time_test - (unsigned)g_args->time_to_die);
 		printf_lock("is dead", philo);
 		return (0);
 	}
