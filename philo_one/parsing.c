@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:49:07 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/07 16:26:05 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:56:52 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@ int		ft_init_philos(t_philo *philos)
 	{
 		philos[i - 1].n = i;
 		pthread_mutex_init(&philos[i - 1].my_fork.lock, NULL);
+		philos[i - 1].tolm = time_ms();
 		if (i < g_all->nb_philo)
-		{
-			philos[i - 1].tolm = time_ms();
 			philos[i - 1].n_fork = &philos[i].my_fork;
-		}
 		i++;
 	}
-	philos[g_all->nb_philo - 1].tolm = time_ms();
 	philos[g_all->nb_philo - 1].n_fork = &philos[0].my_fork;
 	return (1);
 }

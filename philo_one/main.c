@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:50:50 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/07 16:45:56 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:02:33 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		philo_sleep(t_philo *philo)
 {
-	//if (!philo_dead(philo, 0))
-	//	return (0);
+	if (!philo_dead(philo, 2))
+		return (0);
 	printf_lock("is sleeping", philo);
 	sleep_ph(g_all->time_to_sleep, philo);
 	return (1);
@@ -23,8 +23,8 @@ int		philo_sleep(t_philo *philo)
 
 int		philo_eat(t_philo *philo)
 {
-	//if (!philo_dead(philo, 0))
-	//	return (0);
+	if (!philo_dead(philo, 2))
+		return (0);
 	pthread_mutex_lock(&philo->my_fork.lock);
 	pthread_mutex_lock(&philo->n_fork->lock);
 	printf_lock("has taken a fork", philo);
@@ -33,7 +33,7 @@ int		philo_eat(t_philo *philo)
 	philo->tolm = time_ms();
 	philo->nbtem++;
 	sleep_ph(g_all->time_to_eat, philo);
-	if (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo)
+	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
 		max_meals();
 	pthread_mutex_unlock(&philo->my_fork.lock);
 	pthread_mutex_unlock(&philo->n_fork->lock);
@@ -87,10 +87,7 @@ void	check_dead(t_philo *philo)
 		while (i < g_all->nb_philo)
 		{
 			if (!philo_dead(&philo[i], 3))
-			{
-				//printf_lock("is dead", philo);
 				return ;
-			}
 			i++;
 		}
 		usleep(200);
