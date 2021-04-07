@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/06 14:58:10 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:07:49 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 # include <sys/time.h>
 # include "elements.h"
 
-t_args	*g_args;
+t_all	*g_all;
 
-int				ft_init_philos(t_all *all);
+int				ft_init_philos(t_philo *philos);
 int				ft_parsing(int ac, char **av);
-void			ft_start_thread(t_all *all);
+void			ft_mutex_init(void);
+void			ft_start_thread(t_philo *philos);
 
 void			max_meals();
-int				philo_dead(t_philo *philo, int time_test);
+int				philo_dead(t_philo *philo, int i);
 /*
 ** UTILS
 */

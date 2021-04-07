@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:23:55 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/06 15:02:32 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:47:02 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 void	max_meals()
 {
-	pthread_mutex_lock(&g_args->eat_stop);
-	g_args->eat_enough++;
-	pthread_mutex_unlock(&g_args->eat_stop);
+	pthread_mutex_lock(&g_all->mutex.eat_stop);
+	g_all->eat_enough++;
+	pthread_mutex_unlock(&g_all->mutex.eat_stop);
 }
 
-int		philo_dead(t_philo *philo, int time_test)
-{
-	unsigned int time_now;
+/*
+ * i & 1 => option 1 (i == 1)
+ * i & 2 => option 2 (i == 2)
+ * i & 1 && i & 2 => option 1 && option 2 (i == 3)
+ */
 
-	time_now = time_ms();
-	if (time_now - philo->tolm >= (unsigned)g_args->time_to_die)
+int		philo_dead(t_philo *philo, int i)
+{
+	if (!(time_ms() - philo->tolm < (unsigned)g_all->time_to_die))
 	{
-		printf_lock("is dead", philo);
+		if (i & 1)
+			printf_lock("is dead", philo);
 		return (0);
 	}
-	else if (time_now + time_test - philo->tolm >= (unsigned)g_args->time_to_die)
-	{
-		//sleep_ph(time_now - philo->tolm + time_test - (unsigned)g_args->time_to_die);
-		printf_lock("is dead", philo);
+	if ((i & 2) && !(g_all->ntepme != -1 && g_all->eat_enough < g_all->nb_philo))
 		return (0);
-	}
 	return (1);
 }

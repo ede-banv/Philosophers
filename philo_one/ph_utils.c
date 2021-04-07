@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 15:09:13 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/06 16:30:30 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:44:56 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void			printf_lock(char *str, const t_philo *const philo)
 {
-	pthread_mutex_lock(&g_args->print);
-	printf("[%u] Philo %d %s.\n", time_ms() - g_args->time_start, philo->n, str);
-	if ((g_args->ntepme != -1 && g_args->eat_enough == g_args->nb_philo))
+	pthread_mutex_lock(&g_all->mutex.print);
+	printf("[%u] Philo %d %s.\n", time_ms() - g_all->time_start, philo->n, str);
+	if ((g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo))
 		return ;
-	printf("sexy\n");
-	pthread_mutex_unlock(&g_args->print);
+	pthread_mutex_unlock(&g_all->mutex.print);
 }
 
 unsigned int	time_ms(void)
@@ -36,11 +35,10 @@ void			sleep_ph(int time, t_philo *philo)
 	time_start = time_ms() + time;
 	while (time_ms() < time_start)
 	{
-		if (time_ms() - philo->tolm >= (unsigned)g_args->time_to_die)
+		if (!philo_dead(philo, 2))
 		{
-			printf_lock("is dead", philo);
+			//printf_lock("is dead", philo);
 			usleep(400);
-			pthread_mutex_unlock(&g_args->dead);
 		}
 		usleep(400);
 	}

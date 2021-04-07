@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   start.c.old                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:07:46 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/06 16:43:25 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:12:31 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int		philo_eat(t_philo *philo)
 	printf_lock("is eating", philo);
 	philo->tolm = time_ms();
 	sleep_ph(g_args->time_to_eat, philo);
-	printf("xd");
 	if (g_args->ntepme != -1 && philo->nbtem == g_args->ntepme)
-			max_meals();
+		max_meals();
 	pthread_mutex_unlock(&philo->my_fork.lock);
 	pthread_mutex_unlock(&philo->n_fork->lock);
 	return (1);
@@ -39,17 +38,12 @@ int		philo_eat(t_philo *philo)
 
 void	*philo_life(void *arg)
 {
-	int		i;
-
-	i = 0;
 	t_philo *philo = (t_philo *)arg;
-	printf("philo%d\n",philo->n);
-	while (time_ms() - philo->tolm < (unsigned)g_args->time_to_die && (g_args->ntepme != -1 && g_args->eat_enough < g_args->nb_philo))
+	while (philo_dead(philo))
 	{
 		printf("lol%d\n", philo->n);
 		if (!philo_eat(philo))
 			break;
-
 		if (g_args->ntepme != -1 && g_args->eat_enough == g_args->nb_philo)
 			break;
 		if (!philo_sleep(philo))
@@ -60,16 +54,23 @@ void	*philo_life(void *arg)
 	return (NULL);
 }
 
-void	ft_start_thread(t_all *all)
+void	ft_start_thread(t_philo *philos)
 {
 	int i;
 
 	i = 0;
-	while (i < g_args->nb_philo)
+	while (i < g_all->nb_philo)
 	{
-		pthread_create(&all->philos[i].thread, NULL, philo_life, &all->philos[i]);
+		pthread_create(&philos[i].thread, NULL, philo_life, &philos[i]);
 		usleep(400);
-		i++;
+		i += 2;
+	}
+	i = 1;
+	while (i < g_all->nb_philo)
+	{
+		pthread_create(&philos[i].thread, NULL, philo_life, &philos[i]);
+		usleep(400);
+		i += 2;
 	}
 }
 
