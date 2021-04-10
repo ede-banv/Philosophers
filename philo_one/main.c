@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:50:50 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/10 14:43:57 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/10 16:33:02 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		philo_sleep(t_philo *philo)
 	if (!philo_dead(philo, 2))
 		return (0);
 	printf_lock("is sleeping", philo);
-	sleep_ph(g_all->time_to_sleep, philo);
+	sleep_ph(g_all->time_to_sleep);
 	return (1);
 }
 
@@ -34,7 +34,7 @@ int		philo_eat(t_philo *philo)
 	printf_lock("is eating", philo);
 	philo->tolm = time_ms();
 	philo->nbtem++;
-	sleep_ph(g_all->time_to_eat, philo);
+	sleep_ph(g_all->time_to_eat);
 	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
 		max_meals();
 	pthread_mutex_unlock(&philo->my_fork.lock);
@@ -70,7 +70,7 @@ void	ft_start_thread(t_philo *philos)
 		pthread_create(&philos[i].thread, NULL, philo_life, &philos[i]);
 		i += 2;
 	}
-	usleep(800);
+	usleep(400);
 	i = 1;
 	while (i < g_all->nb_philo)
 	{
@@ -92,7 +92,7 @@ void	check_dead(t_philo *philo)
 				return ;
 			i++;
 		}
-		usleep(200);
+		usleep(500);
 	}
 }
 
@@ -123,5 +123,6 @@ int		main(int ac, char **av)
 	ft_mutex_init();
 	ft_start_thread(philo);
 	check_dead(philo);
+	free(philo);
 	return (0);
 }
