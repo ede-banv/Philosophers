@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:16:53 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/07 14:47:17 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:19:05 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_all
 	int				ntepme; //nb of times each philosopher must eat
 	unsigned int	time_start;
 	int				eat_enough;
+	int				last_eat;
 	t_mutex			mutex;
 }				t_all;
 

@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:50:50 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/07 17:02:33 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/10 14:43:57 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->n_fork->lock);
 	printf_lock("has taken a fork", philo);
 	printf_lock("has taken a fork", philo);
+	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1)
+		g_all->last_eat++;
 	printf_lock("is eating", philo);
 	philo->tolm = time_ms();
 	philo->nbtem++;
