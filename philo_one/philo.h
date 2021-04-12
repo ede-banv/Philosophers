@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/10 16:28:14 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/12 14:51:19 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ unsigned int	time_ms(void);
 void			sleep_ph(int time);
 
 void			ft_bzero(void *s, size_t n);
+int				ft_strcmp(const char *s1, const char *s2);
 int				ft_isdigit_str(char *str);
 int				ft_atoi_ph(const char *str);
 
