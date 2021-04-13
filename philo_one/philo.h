@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/12 14:51:19 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:45:55 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void			ft_start_thread(t_philo *philos);
 
 void			max_meals();
 int				philo_dead(t_philo *philo, int i);
+
 /*
 ** UTILS
 */
