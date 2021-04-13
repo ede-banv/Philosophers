@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 13:52:23 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/13 16:41:25 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		philo_sleep(t_philo *philo)
 {
-	if (!philo_dead(philo, 2))
-		return (0);
+	//if (!philo_dead(philo, 2))
+	//	return (0);
 	printf_sem("is sleeping", philo);
 	sleep_ph(g_all->time_to_die);
 	return (1);
@@ -23,16 +23,20 @@ int		philo_sleep(t_philo *philo)
 
 int		philo_eat(t_philo *philo)
 {
-	if (!philo_dead(philo, 2))
-		return (0);
+	//if (!philo_dead(philo, 2))
+	//	return (0);
 	sem_wait(g_all->sems.forks);
 	printf_sem("has taken a fork", philo);
-	sem_wait(g_all->sems.fork);
+	sem_wait(g_all->sems.forks);
 	printf_sem("has taken a fork", philo);
+	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1)
+		g_all->last_eat++;
 	philo->tolm = time_ms();
 	printf_sem("is eating", philo);
-	sleep_ph(g_all->time_to_eat);
 	philo->nbtem++;
+	sleep_ph(g_all->time_to_eat);
+	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
+		max_meals();
 	sem_post(g_all->sems.forks);
 	sem_post(g_all->sems.forks);
 	return (1);
@@ -47,10 +51,13 @@ void	*philo_life(void *arg)
 	{
 		if (!philo_eat(philo))
 			break;
+		if (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo)
+			break;
 		if (!philo_sleep(philo))
 			break;
 		printf_sem("is thinking", philo);
 	}
+	return (NULL);
 }
 
 void	ft_start_thread(t_philo *philo)
@@ -60,7 +67,7 @@ void	ft_start_thread(t_philo *philo)
 	i = 0;
 	while (i < g_all->nb_philo)
 	{
-		pthread_create(&philo[i].create, NULL, philo_life, &philo[i])
+		pthread_create(&philo[i].thread, NULL, philo_life, &philo[i]);
 		i++;
 	}
 }
@@ -106,12 +113,14 @@ int		main(int ac, char **av)
 	}
 	ft_bzero(philo, sizeof(t_philo) * g_all->nb_philo);
 	ft_init_philos(philo);
-	if (!ft_sem_init())
+	if (!ft_sems_init())
 	{
-		printf("Error creating semaphores.\n")
+		printf("Error creating semaphores.\n");
 		free(philo);
 		return (1);
 	}
 	ft_start_thread(philo);
 	check_dead(philo);
+	ft_philo_end(&philo);
+	return (0);
 }

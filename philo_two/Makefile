@@ -1,7 +1,7 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 NAME = philo_two
-SRCS =
+SRCS = main.c utils.c parsing.c ph_utils.c ph_stop.c
 OBJS = ${SRCS:.c=.o}
 
 $(NAME):	${OBJS}
