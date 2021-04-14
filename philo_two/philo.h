@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:34:43 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 16:30:19 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/14 17:01:06 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 t_all *g_all;
 
-int				ft_init_philos(t_philo *philos);
-int				ft_parsing(int ac, char **av);
 int				ft_sems_init(void);
 void			ft_philo_end(t_philo **philo);
 

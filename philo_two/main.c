@@ -6,13 +6,13 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 16:41:25 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/14 17:00:46 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		philo_sleep(t_philo *philo)
+static int	philo_sleep(t_philo *philo)
 {
 	//if (!philo_dead(philo, 2))
 	//	return (0);
@@ -21,7 +21,7 @@ int		philo_sleep(t_philo *philo)
 	return (1);
 }
 
-int		philo_eat(t_philo *philo)
+static int	philo_eat(t_philo *philo)
 {
 	//if (!philo_dead(philo, 2))
 	//	return (0);
@@ -42,12 +42,12 @@ int		philo_eat(t_philo *philo)
 	return (1);
 }
 
-void	*philo_life(void *arg)
+static void	*philo_life(void *arg)
 {
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	while (!philo_dead(philo, 2))
+	while (philo_dead(philo, 2))
 	{
 		if (!philo_eat(philo))
 			break;
@@ -60,7 +60,7 @@ void	*philo_life(void *arg)
 	return (NULL);
 }
 
-void	ft_start_thread(t_philo *philo)
+static void	ft_start_thread(t_philo *philo)
 {
 	int	i;
 
@@ -68,11 +68,12 @@ void	ft_start_thread(t_philo *philo)
 	while (i < g_all->nb_philo)
 	{
 		pthread_create(&philo[i].thread, NULL, philo_life, &philo[i]);
+		usleep(200);
 		i++;
 	}
 }
 
-void	check_dead(t_philo *philo)
+static void	check_dead(t_philo *philo)
 {
 	int i;
 
