@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:47:23 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 16:10:14 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/15 17:19:47 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	max_meals(void)
 {
+	if (g_all->dead)
+		return;
 	sem_wait(g_all->sems.meals);
 	g_all->eat_enough++;
 	sem_post(g_all->sems.meals);

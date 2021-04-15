@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:35:44 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 16:09:31 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/15 17:08:56 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_all
 	unsigned int	time_start;
 	int				eat_enough;
 	int				last_eat;
+	int				dead;
 	t_sem			sems;
 }				t_all;
 
