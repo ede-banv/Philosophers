@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/19 14:22:44 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/19 16:48:45 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	*philo_life(void *arg)
 			break;
 		printf_sem("is thinking", philo);
 	}
-		printf("xd\n");
 	return (NULL);
 }
 
@@ -87,7 +86,7 @@ void	join_thread(t_philo *philo)
 	{
 		pthread_join(philo[i].thread, NULL);
 		i++;
-		printf("lol\n");
+		//printf("lol\n");
 	}
 }
 
