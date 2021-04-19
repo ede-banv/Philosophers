@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/17 16:12:36 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:22:44 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static int	philo_eat(t_philo *philo)
 	sem_wait(g_all->sems.forks);
 	printf_sem("has taken a fork", philo);
 	printf_sem("has taken a fork", philo);
-	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1)
-		g_all->last_eat++;
+	//if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1)
+	//	g_all->last_eat++;
+	philo->nbtem++;
 	printf_sem("is eating", philo);
 	philo->tolm = time_ms();
-	philo->nbtem++;
 	sleep_ph(g_all->time_to_eat);
 	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
 		max_meals();
@@ -47,16 +47,17 @@ static void	*philo_life(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	while (philo_dead(philo, 2) && !g_all->dead)
+	while (philo_dead(philo, 2) && !g_all->dead && (g_all->ntepme != -1 && philo->nbtem < g_all->ntepme))
 	{
 		if (!philo_eat(philo))
 			break;
-		if (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo && g_all->dead)
+		if ((g_all->ntepme != -1 && philo->nbtem == g_all->ntepme) || g_all->dead)
 			break;
 		if (!philo_sleep(philo))
 			break;
 		printf_sem("is thinking", philo);
 	}
+		printf("xd\n");
 	return (NULL);
 }
 
@@ -86,7 +87,7 @@ void	join_thread(t_philo *philo)
 	{
 		pthread_join(philo[i].thread, NULL);
 		i++;
-		//printf("lol\n");
+		printf("lol\n");
 	}
 }
 

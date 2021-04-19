@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:28:59 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/17 16:10:55 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/17 16:22:45 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void			printf_sem(char *str, const t_philo *const philo)
 		return;
 	sem_wait(g_all->sems.print);
 	printf("[%u] Philo %d %s\n", time_ms() - g_all->time_start, philo->n, str);
-	if (!ft_strcmp("died", str) || (!ft_strcmp("is eating", str) && g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1) || (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo))
+	//if (!ft_strcmp("died", str) || (!ft_strcmp("is eating", str) && g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1) || (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo))
+	if (!ft_strcmp("died", str) || (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme))
 	{
 		g_all->dead++;
 		return ;

@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:35:44 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/16 13:58:47 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/17 16:45:59 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_all
 	int				ntepme;
 	unsigned int	time_start;
 	int				eat_enough;
-	int				last_eat;
+	//int				last_eat;
 	int				dead;
 	t_sem			sems;
 }				t_all;
