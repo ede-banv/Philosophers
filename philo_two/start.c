@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/19 16:48:45 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/21 13:36:35 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		start_philo(t_philo *philo)
 	while (i < g_all->nb_philo)
 	{
 		pthread_create(&philo[i].thread, NULL, philo_life, &philo[i]);
-		usleep(200);
+		usleep(g_all->time_to_eat * (i % 2) / 2);
 		i++;
 	}
 	check_dead(philo);
