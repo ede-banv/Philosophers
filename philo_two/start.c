@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/21 13:36:35 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:06:09 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int	philo_eat(t_philo *philo)
 	sem_wait(g_all->sems.forks);
 	printf_sem("has taken a fork", philo);
 	printf_sem("has taken a fork", philo);
-	//if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1)
-	//	g_all->last_eat++;
 	philo->nbtem++;
 	printf_sem("is eating", philo);
 	philo->tolm = time_ms();
@@ -47,8 +45,10 @@ static void	*philo_life(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	while (philo_dead(philo, 2) && !g_all->dead && (g_all->ntepme != -1 && philo->nbtem < g_all->ntepme))
+	while (philo_dead(philo, 2) && !g_all->dead)
 	{
+		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
+			break;
 		if (!philo_eat(philo))
 			break;
 		if ((g_all->ntepme != -1 && philo->nbtem == g_all->ntepme) || g_all->dead)
@@ -95,6 +95,8 @@ int		start_philo(t_philo *philo)
 	int	i;
 
 	i = 0;
+	if (g_all->nb_philo == 1)
+		return (0);
 	ft_init_philos(philo);
 	if (!ft_sems_init())
 	{

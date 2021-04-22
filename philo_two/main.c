@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:50:04 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/15 13:50:13 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:05:33 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int		main(int ac, char **av)
 	}
 	ft_bzero(philo, sizeof(t_philo) * g_all->nb_philo);
 	if (!start_philo(philo))
+	{
+		ft_philo_end(&philo);
 		return (1);
+	}
 	ft_philo_end(&philo);
 	return (0);
 }
