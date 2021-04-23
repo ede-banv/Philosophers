@@ -1,8 +1,0 @@
-Philos tests:
-
-Testeur d'alienad:
-
-5 800 200 200 X (nbs pairs) -> eat enough attendu
-4 310 200 100 X (tous) -> resultat attendu:
-	-> av_5 = 9 : probems, not all ea enough, grep -c result between 40 and 45
-ONE PHILO + AV_5
