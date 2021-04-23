@@ -5,42 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 16:35:44 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/23 17:33:50 by ede-banv         ###   ########.fr       */
+/*   Created: 2021/04/23 14:20:47 by ede-banv          #+#    #+#             */
+/*   Updated: 2021/04/23 17:39:02 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __ELEMENTS_H__
 # define __ELEMENTS_H__
 
-# include <pthread.h>
+# include <unistd.h>
 # include <semaphore.h>
 
 typedef struct	s_philo
 {
-	int			n;
-	pthread_t	thread;
-	int			tolm;
-	int			nbtem;
+	int		n;
+	int		nbtem;
+	int		tolm;
+	pid_t	pid;
 }				t_philo;
 
 typedef struct	s_sem
 {
-	sem_t		*forks;
-	sem_t		*print;
+	sem_t	forks;
+	sem_t	print;
 }				t_sem;
 
 typedef struct	s_all
 {
-	int				nb_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				ntepme;
-	unsigned int	time_start;
-	int				eat_enough;
-	int				dead;
-	t_sem			sems;
+	int		nb_philo;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		time_to_die;
+	int		time_start;
+	int		ntepme;
+	int		dead;
+	t_sem	sems;
 }				t_all;
+
 
 #endif
