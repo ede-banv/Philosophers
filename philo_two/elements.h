@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:35:44 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/23 17:33:50 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/26 17:10:42 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_sem
 {
 	sem_t		*forks;
 	sem_t		*print;
+	sem_t		*meals;
 }				t_sem;
 
 typedef struct	s_all
