@@ -6,13 +6,13 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:04:26 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/26 17:30:12 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:43:46 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		philo_sleep(t_philo *philo)
+void	philo_sleep(t_philo *philo)
 {
 	if (!philo_dead(philo, 1))
 		exit (0);
@@ -20,7 +20,7 @@ int		philo_sleep(t_philo *philo)
 	sleep_ph(g_all->time_to_sleep, philo);
 }
 
-int		philo_eat(t_philo *philo)
+void	philo_eat(t_philo *philo)
 {
 	if (!philo_dead(philo, 1))
 		exit (0);
@@ -38,18 +38,19 @@ int		philo_eat(t_philo *philo)
 
 void	philo_life(t_philo *philo)
 {
-	while (time_ms() - philo->tolm < g_all->time_to_die)
+	printf("lol\n");
+	while (philo_dead(philo, 1))
 	{
-		if (g_all->ntepme != -1 && philo->nbtem < g_all->ntepme)
+		printf("xd\n");
+		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
 			break;
-		if (!philo_eat(philo))
-			break;
+		philo_eat(philo);
 		if (philo->nbtem == g_all->ntepme)
 			break;
-		if (!philo_sleep(philo))
-			break;
+		philo_sleep(philo);
 		printf_sem("is thinking", philo);
 	}
+	exit(0);
 }
 
 int		start_philo(t_philo *philo)
@@ -78,4 +79,5 @@ int		start_philo(t_philo *philo)
 		waitpid(philo[i].pid, &status, 0);
 		i++;
 	}
+	return (1);
 }

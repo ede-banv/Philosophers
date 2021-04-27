@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:20:47 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/26 17:26:07 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:32:04 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct	s_philo
 
 typedef struct	s_sem
 {
-	sem_t	forks;
-	sem_t	print;
+	sem_t	*forks;
+	sem_t	*print;
 }				t_sem;
 
 typedef struct	s_all
