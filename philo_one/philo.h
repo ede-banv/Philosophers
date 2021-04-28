@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <fcntl.h>
 # include "elements.h"
 
 t_all	*g_all;

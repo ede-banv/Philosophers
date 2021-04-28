@@ -19,6 +19,7 @@
 # include <signal.h>
 # include <sys/time.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # include "elements.h"
 
 t_all *g_all;

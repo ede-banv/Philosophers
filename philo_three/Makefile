@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread
 NAME = philo_three
 SRCS = main.c start.c utils.c parsing.c ph_utils.c ph_stop.c
 OBJS = ${SRCS:.c=.o}
