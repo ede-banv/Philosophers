@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 16:55:49 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/27 16:40:32 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:46:18 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			printf_sem(char *str, t_philo *philo)
 	sem_wait(g_all->sems.print);
 	printf("[%d] Philo %d %s\n", time_ms() - g_all->time_start, philo->n, str);
 	if (!ft_strcmp("died", str))
-		kill(0, SIGINT);
+		exit (1);
 	sem_post(g_all->sems.print);
 }
 

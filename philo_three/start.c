@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:04:26 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/27 16:43:46 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:53:49 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	philo_eat(t_philo *philo)
 	if (!philo_dead(philo, 1))
 		exit (0);
 	sem_wait(g_all->sems.forks);
+	if (!philo_dead(philo, 1))
+		exit (0);
 	printf_sem("has taken a fork", philo);
 	sem_wait(g_all->sems.forks);
 	printf_sem("has taken a fork", philo);
@@ -38,10 +40,8 @@ void	philo_eat(t_philo *philo)
 
 void	philo_life(t_philo *philo)
 {
-	printf("lol\n");
 	while (philo_dead(philo, 1))
 	{
-		printf("xd\n");
 		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
 			break;
 		philo_eat(philo);
@@ -59,6 +59,9 @@ int		start_philo(t_philo *philo)
 	int status;
 
 	i = 0;
+	if (g_all->nb_philo == 1)
+		return (0);
+	ft_init_philos(philo);
 	if (!ft_sems_init())
 	{
 		printf("Error creating semaphores.\n");
@@ -76,8 +79,16 @@ int		start_philo(t_philo *philo)
 	i = 0;
 	while (i < g_all->nb_philo)
 	{
-		waitpid(philo[i].pid, &status, 0);
-		i++;
+		waitpid(-1, &status, 0);
+		if (WEXITSTATUS(status) == 1)
+		{
+			i = 0;
+			while (i < g_all->nb_philo)
+				kill(philo[i++].pid, SIGKILL);
+			break;
+		}
+		else
+			i++;
 	}
 	return (1);
 }
