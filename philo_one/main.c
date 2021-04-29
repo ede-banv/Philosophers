@@ -137,6 +137,6 @@ int		main(int ac, char **av)
 	ft_start_thread(philo);
 	check_dead(philo);
 	join_thread(philo);
-	free(philo);
+	end_philo(philo);
 	return (0);
 }

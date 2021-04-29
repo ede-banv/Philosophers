@@ -37,3 +37,15 @@ int		philo_dead(t_philo *philo, int i)
 		return (0);
 	return (1);
 }
+
+void	end_philo(t_philo *philo)
+{
+	int i;
+	
+	i = 0;
+	pthread_mutex_destroy(&g_all->mutex.print);
+	pthread_mutex_destroy(&g_all->mutex.eat_stop);
+	while (i < g_all->nb_philo)
+		pthread_mutex_destroy(&philo[i++].my_fork.lock);
+	free(philo);
+}
