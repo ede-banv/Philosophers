@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:50:50 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 14:19:11 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/29 17:22:59 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	*philo_life(void *arg)
 			break;
 		printf_lock("is thinking", philo);
 	}
+	printf("xd %d\n", g_all->eat_enough);
 	return (NULL);
 }
 
@@ -89,7 +90,10 @@ void	check_dead(t_philo *philo)
 		while (i < g_all->nb_philo)
 		{
 			if (!philo_dead(&philo[i], 3))
+			{
+				printf("xd %d\n", g_all->eat_enough);
 				return ;
+			}
 			i++;
 		}
 		usleep(500);
@@ -103,9 +107,9 @@ void	join_thread(t_philo *philo)
 	i = 0;
 	while (i < g_all->nb_philo)
 	{
-		pthread_detach(philo[i].thread);
+		printf("lol\n");
+		pthread_join(philo[i].thread, NULL);
 		i++;
-		//printf("lol\n");
 	}
 }
 
