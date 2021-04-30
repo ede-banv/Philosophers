@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 16:00:04 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:39:00 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include "elements.h"
 
 t_all	*g_all;
+
+int				start_philo(t_philo *philo);
 
 int				ft_init_philos(t_philo *philos);
 int				ft_parsing(int ac, char **av);

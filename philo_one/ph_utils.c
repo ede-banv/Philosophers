@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 15:09:13 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 14:19:57 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/30 15:33:09 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void			printf_lock(char *str, const t_philo *const philo)
 {
+	if (g_all->dead)
+		return;
 	pthread_mutex_lock(&g_all->mutex.print);
 	printf("[%u] Philo %d %s.\n", time_ms() - g_all->time_start, philo->n, str);
-	if (!ft_strcmp("died", str) || g_all->last_eat || (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo))
-		return ;
+	if (!ft_strcmp("died", str) || (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo))
+	{
+		g_all->dead++;
+		return;
+	}
 	pthread_mutex_unlock(&g_all->mutex.print);
 }
 

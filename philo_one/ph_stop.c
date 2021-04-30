@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:23:55 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/10 15:58:25 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/30 15:31:35 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		philo_dead(t_philo *philo, int i)
 void	end_philo(t_philo *philo)
 {
 	int i;
-	
+
 	i = 0;
 	pthread_mutex_destroy(&g_all->mutex.print);
 	pthread_mutex_destroy(&g_all->mutex.eat_stop);

@@ -6,112 +6,11 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:50:50 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/29 17:22:59 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:38:36 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int		philo_sleep(t_philo *philo)
-{
-	if (!philo_dead(philo, 2))
-		return (0);
-	printf_lock("is sleeping", philo);
-	sleep_ph(g_all->time_to_sleep);
-	return (1);
-}
-
-int		philo_eat(t_philo *philo)
-{
-	if (!philo_dead(philo, 2))
-		return (0);
-	pthread_mutex_lock(&philo->my_fork.lock);
-	pthread_mutex_lock(&philo->n_fork->lock);
-	printf_lock("has taken a fork", philo);
-	printf_lock("has taken a fork", philo);
-	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme - 1 && g_all->eat_enough == g_all->nb_philo - 1)
-		g_all->last_eat++;
-	printf_lock("is eating", philo);
-	philo->tolm = time_ms();
-	philo->nbtem++;
-	sleep_ph(g_all->time_to_eat);
-	if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
-		max_meals();
-	pthread_mutex_unlock(&philo->my_fork.lock);
-	pthread_mutex_unlock(&philo->n_fork->lock);
-	return (1);
-}
-
-void	*philo_life(void *arg)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)arg;
-	while (philo_dead(philo, 2))
-	{
-		if (!philo_eat(philo))
-			break;
-		if (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo)
-			break;
-		if (!philo_sleep(philo))
-			break;
-		printf_lock("is thinking", philo);
-	}
-	printf("xd %d\n", g_all->eat_enough);
-	return (NULL);
-}
-
-void	ft_start_thread(t_philo *philos)
-{
-	int i;
-
-	i = 0;
-	while (i < g_all->nb_philo)
-	{
-		pthread_create(&philos[i].thread, NULL, philo_life, &philos[i]);
-		i += 2;
-	}
-	usleep(400);
-	i = 1;
-	while (i < g_all->nb_philo)
-	{
-		pthread_create(&philos[i].thread, NULL, philo_life, &philos[i]);
-		i += 2;
-	}
-}
-
-void	check_dead(t_philo *philo)
-{
-	int i;
-
-	while (1)
-	{
-		i = 0;
-		while (i < g_all->nb_philo)
-		{
-			if (!philo_dead(&philo[i], 3))
-			{
-				printf("xd %d\n", g_all->eat_enough);
-				return ;
-			}
-			i++;
-		}
-		usleep(500);
-	}
-}
-
-void	join_thread(t_philo *philo)
-{
-	int i;
-
-	i = 0;
-	while (i < g_all->nb_philo)
-	{
-		printf("lol\n");
-		pthread_join(philo[i].thread, NULL);
-		i++;
-	}
-}
 
 int		main(int ac, char **av)
 {
@@ -136,11 +35,6 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	ft_bzero(philo, sizeof(t_philo) * g_all->nb_philo);
-	ft_init_philos(philo);
-	ft_mutex_init();
-	ft_start_thread(philo);
-	check_dead(philo);
-	join_thread(philo);
-	end_philo(philo);
+	start_philo(philo);
 	return (0);
 }

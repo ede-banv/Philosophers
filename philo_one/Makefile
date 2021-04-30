@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pthread
 NAME = philo_one
-SRCS = main.c parsing.c ph_stop.c ph_utils.c utils.c
+SRCS = main.c start.c parsing.c ph_stop.c ph_utils.c utils.c
 OBJS = ${SRCS:.c=.o}
 
 $(NAME):	${OBJS}
