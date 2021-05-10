@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 12:30:16 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:35:56 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 11:42:10 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			ft_sems_init(void)
 	if (!init_sem(&g_all->sems.forks, "sem_forks", g_all->nb_philo))
 		return (0);
 	if (!init_sem(&g_all->sems.print, "sem_print", 1))
+		return (0);
+	if (!init_sem(&g_all->sems.meals, "sem_meals", 1))
 		return (0);
 	return (1);
 }

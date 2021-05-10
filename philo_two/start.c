@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:34:30 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 11:39:53 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	check_dead(t_philo *philo)
 				if (!philo_dead(&philo[i], 3))
 					return ;
 			if (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo)
-				return;
+				return ;
 			i++;
 		}
 		usleep(500);
@@ -120,5 +120,5 @@ int			start_philo(t_philo *philo)
 	}
 	check_dead(philo);
 	join_thread(philo);
-	return (0);
+	return (1);
 }
