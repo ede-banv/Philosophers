@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 13:46:27 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 14:45:17 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			start_philo(t_philo *philo)
 	int	i;
 
 	i = 0;
-	if (g_all->nb_philo == 1)
+	if (g_all->nb_philo < 2)
 		return (0);
 	ft_init_philos(philo);
 	if (!ft_sems_init())
