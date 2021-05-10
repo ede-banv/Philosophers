@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:20:17 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 13:51:28 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:54:59 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int				ft_sems_init(void);
 int				ft_init_philos(t_philo *philos);
 void			ft_philo_end(t_philo **philo);
 
+void			*check_dead(void *arg);
 int				philo_dead(t_philo *philo, int i);
 
 /*

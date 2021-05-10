@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:20:47 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 12:27:15 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:51:08 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 
 # include <unistd.h>
 # include <semaphore.h>
+# include <pthread.h>
 
 typedef struct	s_philo
 {
-	int		n;
-	int		nbtem;
-	int		tolm;
-	pid_t	pid;
+	int			n;
+	int			nbtem;
+	int			tolm;
+	int			dead;
+	pid_t		pid;
+	pthread_t	thread;
+
 }				t_philo;
 
 typedef struct	s_sem
@@ -38,7 +42,6 @@ typedef struct	s_all
 	int		time_to_die;
 	int		time_start;
 	int		ntepme;
-	int		dead;
 	t_sem	sems;
 }				t_all;
 

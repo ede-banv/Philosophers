@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:04:26 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 14:45:04 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:54:38 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	philo_eat(t_philo *philo)
 
 void	philo_life(t_philo *philo)
 {
-	while (philo_dead(philo, 1))
+	pthread_create(&philo->thread, NULL, check_dead, philo);
+	while (philo_dead(philo, 1) && !philo->dead)
 	{
 		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
 			break ;
@@ -50,6 +51,7 @@ void	philo_life(t_philo *philo)
 		philo_sleep(philo);
 		printf_sem("is thinking", philo);
 	}
+	pthread_join(philo->thread, NULL);
 	exit(0);
 }
 
