@@ -6,12 +6,12 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:16:53 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/30 15:31:11 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 12:25:12 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ELEMENTS_H__
-# define __ELEMENTS_H__
+#ifndef ELEMENTS_H
+# define ELEMENTS_H
 
 # include <pthread.h>
 
@@ -36,7 +36,6 @@ typedef struct	s_mutex
 	pthread_mutex_t eat_stop;
 }				t_mutex;
 
-
 typedef struct	s_all
 {
 	int				nb_philo;
@@ -49,6 +48,5 @@ typedef struct	s_all
 	int				dead;
 	t_mutex			mutex;
 }				t_all;
-
 
 #endif

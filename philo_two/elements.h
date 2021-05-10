@@ -6,12 +6,12 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:35:44 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:35:32 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 12:31:52 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ELEMENTS_H__
-# define __ELEMENTS_H__
+#ifndef ELEMENTS_H
+# define ELEMENTS_H
 
 # include <pthread.h>
 # include <semaphore.h>

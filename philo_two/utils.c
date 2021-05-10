@@ -6,13 +6,13 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:30:10 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/13 13:30:16 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:41:56 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int		ft_strcmp(const char *s1, const char *s2)
 {
 	int i;
 
@@ -25,7 +25,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return ((unsigned)s1[i] - (unsigned)s2[i]);
 }
-
 
 size_t	ft_strlen(const char *str)
 {
@@ -43,7 +42,7 @@ void	ft_bzero(void *s, size_t n)
 		memset(s, 0, n);
 }
 
-int	ft_isdigit_str(char *str)
+int		ft_isdigit_str(char *str)
 {
 	size_t i;
 
@@ -57,7 +56,7 @@ int	ft_isdigit_str(char *str)
 	return (1);
 }
 
-int	ft_atoi_ph(const char *str)
+int		ft_atoi_ph(const char *str)
 {
 	int i;
 	int nb;

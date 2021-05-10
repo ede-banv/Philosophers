@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 16:54:09 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/23 17:35:02 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:42:55 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ void		ft_philo_end(t_philo **philo)
 {
 	sem_close(g_all->sems.forks);
 	sem_close(g_all->sems.print);
-
 	free(*philo);
 }

@@ -6,12 +6,12 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:29:19 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/30 14:39:00 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:50:51 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __PHILO_H__
-# define __PHILO_H__
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <string.h>
 # include <stdlib.h>

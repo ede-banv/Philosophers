@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:04:26 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/28 16:53:49 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:46:47 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	philo_sleep(t_philo *philo)
 {
 	if (!philo_dead(philo, 1))
-		exit (0);
+		exit(0);
 	printf_sem("is sleeping", philo);
 	sleep_ph(g_all->time_to_sleep, philo);
 }
@@ -23,10 +23,10 @@ void	philo_sleep(t_philo *philo)
 void	philo_eat(t_philo *philo)
 {
 	if (!philo_dead(philo, 1))
-		exit (0);
+		exit(0);
 	sem_wait(g_all->sems.forks);
 	if (!philo_dead(philo, 1))
-		exit (0);
+		exit(0);
 	printf_sem("has taken a fork", philo);
 	sem_wait(g_all->sems.forks);
 	printf_sem("has taken a fork", philo);
@@ -43,20 +43,41 @@ void	philo_life(t_philo *philo)
 	while (philo_dead(philo, 1))
 	{
 		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
-			break;
+			break ;
 		philo_eat(philo);
 		if (philo->nbtem == g_all->ntepme)
-			break;
+			break ;
 		philo_sleep(philo);
 		printf_sem("is thinking", philo);
 	}
 	exit(0);
 }
 
-int		start_philo(t_philo *philo)
+int		check_status(t_philo *philo)
 {
 	int i;
 	int status;
+
+	i = 0;
+	while (i < g_all->nb_philo)
+	{
+		waitpid(-1, &status, 0);
+		if (WEXITSTATUS(status) == 1)
+		{
+			i = 0;
+			while (i < g_all->nb_philo)
+				kill(philo[i++].pid, SIGKILL);
+			break ;
+		}
+		else
+			i++;
+	}
+	return (1);
+}
+
+int		start_philo(t_philo *philo)
+{
+	int i;
 
 	i = 0;
 	if (g_all->nb_philo == 1)
@@ -76,19 +97,6 @@ int		start_philo(t_philo *philo)
 		usleep(g_all->time_to_eat * (i % 2) / 2);
 		i++;
 	}
-	i = 0;
-	while (i < g_all->nb_philo)
-	{
-		waitpid(-1, &status, 0);
-		if (WEXITSTATUS(status) == 1)
-		{
-			i = 0;
-			while (i < g_all->nb_philo)
-				kill(philo[i++].pid, SIGKILL);
-			break;
-		}
-		else
-			i++;
-	}
+	check_status(philo);
 	return (1);
 }

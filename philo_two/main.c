@@ -6,13 +6,19 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:50:04 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:34:37 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:41:13 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		main(int ac, char **av)
+static int	ft_error(const char *const str)
+{
+	printf("Error: %s.\n", str);
+	return (1);
+}
+
+int			main(int ac, char **av)
 {
 	t_philo	*philo;
 	t_all	all;
@@ -20,20 +26,11 @@ int		main(int ac, char **av)
 	g_all = &all;
 	ft_bzero(g_all, sizeof(t_all));
 	if (ac < 5 || ac > 6)
-	{
-		printf("Error: incorrect number of arguments.\n");
-		return (1);
-	}
+		return (ft_error("incorrect number of arguments"));
 	if (!ft_parsing(ac, av))
-	{
-		printf("Error: please check all your arguments are positive numbers.\n");
-		return (1);
-	}
+		return (ft_error("check all your arguments are positive numbers"));
 	if (!(philo = malloc(sizeof(t_philo) * g_all->nb_philo)))
-	{
-		printf("Error: malloc error.\n");
-		return (1);
-	}
+		return (ft_error("malloc error"));
 	ft_bzero(philo, sizeof(t_philo) * g_all->nb_philo);
 	if (!start_philo(philo))
 	{

@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:32:02 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:39:53 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:46:27 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ static void	*philo_life(void *arg)
 	while (philo_dead(philo, 2) && !g_all->dead)
 	{
 		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
-			break;
+			break ;
 		if (!philo_eat(philo))
-			break;
-		if ((g_all->ntepme != -1 && philo->nbtem == g_all->ntepme) || g_all->dead)
-			break;
+			break ;
+		if ((g_all->ntepme != -1 && philo->nbtem == g_all->ntepme) ||
+		g_all->dead)
+			break ;
 		if (!philo_sleep(philo))
-			break;
+			break ;
 		printf_sem("is thinking", philo);
 	}
 	return (NULL);
@@ -85,19 +86,6 @@ static void	check_dead(t_philo *philo)
 	}
 }
 
-static void	join_thread(t_philo *philo)
-{
-	int i;
-
-	i = 0;
-	while (i < g_all->nb_philo)
-	{
-		pthread_join(philo[i].thread, NULL);
-		i++;
-		//printf("lol\n");
-	}
-}
-
 int			start_philo(t_philo *philo)
 {
 	int	i;
@@ -119,6 +107,8 @@ int			start_philo(t_philo *philo)
 		i++;
 	}
 	check_dead(philo);
-	join_thread(philo);
+	i = -1;
+	while (++i < g_all->nb_philo)
+		pthread_join(philo[i].thread, NULL);
 	return (1);
 }

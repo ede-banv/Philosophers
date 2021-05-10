@@ -6,12 +6,12 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:20:17 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/27 12:00:48 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:51:28 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __PHILO_H__
-# define __PHILO_H__
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <string.h>
 # include <stdio.h>
@@ -32,6 +32,10 @@ int				ft_init_philos(t_philo *philos);
 void			ft_philo_end(t_philo **philo);
 
 int				philo_dead(t_philo *philo, int i);
+
+/*
+** UTILS
+*/
 
 void			printf_sem(char *str, t_philo *philo);
 unsigned int	time_ms(void);

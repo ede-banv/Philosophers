@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:50:50 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:31:38 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 12:26:03 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 	}
 	if (!ft_parsing(ac, av))
 	{
-		printf("Error: please check all your arguments are positive numbers.\n");
+		printf("Error: check all your arguments are positive numbers.\n");
 		return (1);
 	}
 	if (!(philo = malloc(sizeof(t_philo) * g_all->nb_philo)))

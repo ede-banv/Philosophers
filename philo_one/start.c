@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 14:34:01 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:31:35 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 13:43:30 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	*philo_life(void *arg)
 	while (philo_dead(philo, 2) && !g_all->dead)
 	{
 		if (!philo_eat(philo))
-			break;
+			break ;
 		if (g_all->ntepme != -1 && philo->nbtem == g_all->ntepme)
-			break;
+			break ;
 		if (!philo_sleep(philo))
-			break;
+			break ;
 	}
 	return (NULL);
 }

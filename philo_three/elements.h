@@ -6,12 +6,12 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:20:47 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/27 12:32:04 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 12:27:15 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ELEMENTS_H__
-# define __ELEMENTS_H__
+#ifndef ELEMENTS_H
+# define ELEMENTS_H
 
 # include <unistd.h>
 # include <semaphore.h>
@@ -41,6 +41,5 @@ typedef struct	s_all
 	int		dead;
 	t_sem	sems;
 }				t_all;
-
 
 #endif
