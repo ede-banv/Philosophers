@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 14:34:01 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/05/10 11:02:11 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 11:31:35 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,5 @@ int		start_philo(t_philo *philo)
 	i = -1;
 	while (++i < g_all->nb_philo)
 		pthread_join(philo[i].thread, NULL);
-	end_philo(philo);
 	return (0);
 }
