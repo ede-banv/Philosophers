@@ -6,7 +6,7 @@
 /*   By: ede-banv <ede-banv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 14:34:01 by ede-banv          #+#    #+#             */
-/*   Updated: 2021/04/30 16:41:24 by ede-banv         ###   ########.fr       */
+/*   Updated: 2021/05/10 11:02:11 by ede-banv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*philo_life(void *arg)
 	return (NULL);
 }
 
-void	check_and_join(t_philo *philo)
+void	check_dead(t_philo *philo)
 {
 	int i;
 
@@ -75,13 +75,10 @@ void	check_and_join(t_philo *philo)
 				if (!philo_dead(&philo[i], 3))
 					return ;
 			if (g_all->ntepme != -1 && g_all->eat_enough == g_all->nb_philo)
-				return;
+				return ;
 		}
 		usleep(500);
 	}
-	i = -1;
-	while (++i < g_all->nb_philo)
-		pthread_join(philo[i].thread, NULL);
 }
 
 int		start_philo(t_philo *philo)
@@ -89,6 +86,8 @@ int		start_philo(t_philo *philo)
 	int	i;
 
 	i = 0;
+	if (g_all->nb_philo < 2)
+		return (0);
 	ft_init_philos(philo);
 	ft_mutex_init();
 	while (i < g_all->nb_philo)
@@ -100,10 +99,13 @@ int		start_philo(t_philo *philo)
 	i = 1;
 	while (i < g_all->nb_philo)
 	{
-	pthread_create(&philo[i].thread, NULL, philo_life, &philo[i]);
-	i += 2;
+		pthread_create(&philo[i].thread, NULL, philo_life, &philo[i]);
+		i += 2;
 	}
-	check_and_join(philo);
+	check_dead(philo);
+	i = -1;
+	while (++i < g_all->nb_philo)
+		pthread_join(philo[i].thread, NULL);
 	end_philo(philo);
 	return (0);
 }
